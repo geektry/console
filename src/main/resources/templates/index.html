@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>极宅控制台</title>
+
+    <link rel="stylesheet" th:href="@{/lib/element-ui/2.4.0/index.css}">
+    <link rel="stylesheet" th:href="@{/lib/fontawesome/5.3.1/all.css}">
+    <link rel="stylesheet" th:href="@{/lib/bootstrap/4.1.1/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/lib/highlight.js/9.12.0/styles/darcula.css}">
+
+    <script th:src="@{/lib/vue/2.5.16/vue.min.js}"></script>
+    <script th:src="@{/lib/vue-router/3.0.1/vue-router.min.js}"></script>
+    <script th:src="@{/lib/element-ui/2.4.0/index.js}"></script>
+    <script th:src="@{/lib/axios/0.18.0/axios.min.js}"></script>
+    <script th:src="@{/lib/marked/0.4.0/marked.min.js}"></script>
+    <script th:src="@{/lib/highlight.js/9.12.0/highlight.pack.js}"></script>
+    <script th:src="@{/lib/echarts/4.1.0/echarts.common.min.js}"></script>
+    <script th:src="@{/lib/moment/2.22.2/moment.min.js}"></script>
+</head>
+<body style="padding: 70px 20px 0;">
+<div id="app">
+    <router-view></router-view>
+</div>
+
+<script type="module">
+    import nav from '/components/nav.js';
+    import main from '/components/main.js';
+
+    import productNav from '/components/product/nav.js';
+    import productMain from '/components/product/main.js';
+    import productNoteStatistics from '/components/product/note/statistics.js';
+    import productNoteOperation from '/components/product/note/operation.js';
+    import productNoteGroup from '/components/product/note/group.js';
+
+    import toolNav from '/components/tool/nav.js';
+    import toolMain from '/components/tool/main.js';
+    import toolHealth from '/components/tool/health.js';
+    import toolTimestamp from '/components/tool/timestamp.js';
+    import toolImage from '/components/tool/image.js';
+
+    const router = new VueRouter({
+        routes: [
+            { path: '', component: nav,
+                children: [
+                    { path: '', component: main },
+                    { path: 'product', component: productNav,
+                        children: [
+                            { path: '', component: productMain },
+                            { path: 'note/statistics', component: productNoteStatistics },
+                            { path: 'note/operation', component: productNoteOperation },
+                            { path: 'note/group', component: productNoteGroup }
+                        ]
+                    },
+                    { path: 'tool', component: toolNav,
+                        children: [
+                            { path: '', component: toolMain },
+                            { path: 'health', component: toolHealth },
+                            { path: 'timestamp', component: toolTimestamp },
+                            { path: 'image', component: toolImage }
+                        ]
+                    }
+                ],
+            }
+        ]
+    });
+
+    new Vue({ router: router }).$mount('#app');
+</script>
+</body>
+</html>

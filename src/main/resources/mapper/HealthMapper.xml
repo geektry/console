@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mapper.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geektry.console.repository.HealthRepository">
+    <resultMap id="HealthWeightMap" type="com.geektry.console.entity.HealthWeight">
+        <id property="id" column="id"/>
+        <result property="kg" column="kg"/>
+        <result property="createdTs" column="created_ts"/>
+    </resultMap>
+
+    <select id="countHealthWeight" resultType="com.geektry.console.vo.HealthWeightVO">
+        select
+          date_trunc('day', created_ts) samplingTime,
+          kg
+        from c_tool_health_weight
+        where
+          <![CDATA[
+          date_trunc('day', created_ts) >= #{startTime} and
+          date_trunc('day', created_ts) <= #{endTime}
+          ]]>
+        order by samplingTime;
+    </select>
+
+    <select id="getIsWeightRecordedToday" resultType="java.lang.Boolean">
+        select exists(
+          select *
+          from c_tool_health_weight
+          where date_trunc('day', created_ts) = date_trunc('day', now())
+        );
+    </select>
+
+    <insert id="insertWeight" parameterType="com.geektry.console.entity.HealthWeight">
+        insert into c_tool_health_weight
+          (kg, created_ts)
+        values
+          (#{kg}, now());
+    </insert>
+</mapper>

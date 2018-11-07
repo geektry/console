@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>极宅控制台 - 登录</title>
+
+    <link rel="stylesheet" th:href="@{/lib/element-ui/2.4.0/index.css}">
+
+    <script th:src="@{/lib/vue/2.5.16/vue.min.js}"></script>
+    <script th:src="@{/lib/element-ui/2.4.0/index.js}"></script>
+    <script th:src="@{/lib/axios/0.18.0/axios.min.js}"></script>
+</head>
+<body>
+<div id="app" class="text-center" style="width: 200px; margin: 450px auto;">
+    <el-input type="password" v-model="password" placeholder="密码" @keyup.enter.native="login" autofocus></el-input>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            password: ''
+        },
+        methods: {
+            login: function () {
+                const that = this;
+                axios({
+                    url: '/login',
+                    method: 'post',
+                    data: {
+                        password: that.password
+                    }
+                }).then(function (response) {
+                    window.location.href = '/';
+                }).catch(function (error) {
+                    that.$message({
+                        type: 'error',
+                        message: error.response.data.message
+                    });
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>
