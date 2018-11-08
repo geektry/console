@@ -7,7 +7,7 @@ export default {
                 <el-submenu index="/product/note">
                     <template slot="title">
                         <i class="fas fa-pencil-ruler"></i>
-                        <span>极宅笔记</span>
+                        <span>GeekTry笔记</span>
                     </template>
                     <el-menu-item index="/product/note/statistics">
                         <i class="fas fa-chart-area"></i>
