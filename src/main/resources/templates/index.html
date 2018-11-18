@@ -32,6 +32,7 @@
     import productNoteStatistics from '/components/product/note/statistics.js';
     import productNoteOperation from '/components/product/note/operation.js';
     import productNoteGroup from '/components/product/note/group.js';
+    import productChatStatistics from '/components/product/chat/statistics.js';
 
     import toolNav from '/components/tool/nav.js';
     import toolMain from '/components/tool/main.js';
@@ -49,7 +50,8 @@
                             { path: '', component: productMain },
                             { path: 'note/statistics', component: productNoteStatistics },
                             { path: 'note/operation', component: productNoteOperation },
-                            { path: 'note/group', component: productNoteGroup }
+                            { path: 'note/group', component: productNoteGroup },
+                            { path: 'chat/statistics', component: productChatStatistics }
                         ]
                     },
                     { path: 'tool', component: toolNav,

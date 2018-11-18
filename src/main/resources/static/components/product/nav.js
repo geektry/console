@@ -22,6 +22,16 @@ export default {
                         <span>分组管理</span>
                     </el-menu-item>
                 </el-submenu>
+                <el-submenu index="/product/chat">
+                    <template slot="title">
+                        <i class="fas fa-comments"></i>
+                        <span>GeekTry聊天室</span>
+                    </template>
+                    <el-menu-item index="/product/chat/statistics">
+                        <i class="fas fa-chart-area"></i>
+                        <span>数据统计</span>
+                    </el-menu-item>
+                </el-submenu>
                 <p class="absolute-bottom text-center" style="font-size: 10px; color: #fff;">©2018 GeekTry.com</p>
             </el-menu>
             <router-view></router-view>
