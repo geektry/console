@@ -3,6 +3,7 @@ package com.geektry.console.controller;
 import com.geektry.console.framework.RuntimeExceptionMessage;
 import com.geektry.console.framework.ServiceRuntimeException;
 import com.geektry.console.framework.TokenRequired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +17,9 @@ import java.util.Map;
 @RestController
 public class IndexController {
 
+    @Value("${app.password}")
+    private String password;
+
     @GetMapping("/login")
     public ModelAndView viewLogin() {
         return new ModelAndView("login");
@@ -23,9 +27,9 @@ public class IndexController {
 
     @PostMapping("/login")
     public void login(HttpServletResponse response,
-                      @RequestBody Map<String, String> map) {
+                      @RequestBody Map<String, String> requestBody) {
 
-        if (!"z".equals(map.get("password"))) {
+        if (!password.equals(requestBody.get("password"))) {
             throw new ServiceRuntimeException(RuntimeExceptionMessage.PASSWORD_INVALID);
         }
         response.addCookie(new Cookie("token", "token"));

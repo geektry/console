@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author Chaohang Fu
  */
-
 @Configuration
 public class ClientConfiguration {
 
