@@ -32,7 +32,7 @@ export default {
                         <span>数据统计</span>
                     </el-menu-item>
                 </el-submenu>
-                <p class="absolute-bottom text-center" style="font-size: 10px; color: #fff;">©2018 GeekTry.com</p>
+                <p class="absolute-bottom text-center" style="font-size: 10px; color: #fff;">©2019 GeekTry.com</p>
             </el-menu>
             <router-view></router-view>
         </div>

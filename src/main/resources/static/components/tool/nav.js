@@ -16,7 +16,7 @@ export default {
                     <i class="fas fa-image"></i>
                     <span slot="title">图片</span>
                 </el-menu-item>
-                <p class="absolute-bottom text-center" style="font-size: 10px; color: #fff;">©2018 GeekTry.com</p>
+                <p class="absolute-bottom text-center" style="font-size: 10px; color: #fff;">©2019 GeekTry.com</p>
             </el-menu>
             <router-view></router-view>
         </div>
